@@ -1,0 +1,9 @@
+[build]
+  # Base directory: change to the folder containing package.json
+  base = "Luxury Restaurant Website Design"
+
+  # Command to run for building the app
+  command = "npm run build"
+
+  # Directory to publish, relative to the base directory
+  publish = "dist"

@@ -1,0 +1,10 @@
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Font family overrides to map the classes properly to loaded Google Fonts */
+.font-\[\'Playfair_Display\'\] {
+  font-family: 'Playfair Display', serif !important;
+}
+.font-\[\'DM_Sans\'\] {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}

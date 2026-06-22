@@ -1,0 +1,263 @@
+@variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #FAF8F5;
+  --foreground: #2C2C2A;
+  --card: #F7F4EF;
+  --card-foreground: #2C2C2A;
+  --popover: #F7F4EF;
+  --popover-foreground: #2C2C2A;
+  --primary: #5A1423;
+  --primary-foreground: #ffffff;
+  --secondary: #EDE9E2;
+  --secondary-foreground: #2C2C2A;
+  --muted: #EDE9E2;
+  --muted-foreground: #7A7A72;
+  --accent: #5A1423;
+  --accent-foreground: #ffffff;
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
+  --border: rgba(44, 44, 42, 0.1);
+  --input: transparent;
+  --input-background: #F0EDE8;
+  --switch-background: #c2bdb5;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #5A1423;
+  --chart-1: #5A1423;
+  --chart-2: #B5C4BA;
+  --chart-3: #D4CFC8;
+  --chart-4: #6B8A76;
+  --chart-5: #A3B5A8;
+  --radius: 0.25rem;
+  --sidebar: #F7F4EF;
+  --sidebar-foreground: #2C2C2A;
+  --sidebar-primary: #5A1423;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #EDE9E2;
+  --sidebar-accent-foreground: #2C2C2A;
+  --sidebar-border: rgba(44, 44, 42, 0.1);
+  --sidebar-ring: #5A1423;
+
+  --sage: #5A1423;
+  --sage-light: #B5C4BA;
+  --sage-dark: #6B8A76;
+  --beige: #F7F4EF;
+  --beige-dark: #EDE9E2;
+  --charcoal: #2C2C2A;
+  --charcoal-light: #5A5A56;
+}
+
+.dark {
+  --background: #4A151D;
+  --foreground: #FAF8F5;
+  --card: #5B1A24;
+  --card-foreground: #FAF8F5;
+  --popover: #5B1A24;
+  --popover-foreground: #FAF8F5;
+  --primary: #FAF8F5;
+  --primary-foreground: #4A151D;
+  --secondary: #731E30;
+  --secondary-foreground: #FAF8F5;
+  --muted: #731E30;
+  --muted-foreground: #D4CFC8;
+  --accent: #FAF8F5;
+  --accent-foreground: #5A1423;
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
+  --border: rgba(247, 245, 240, 0.15);
+  --input: rgba(247, 245, 240, 0.1);
+  --ring: #FAF8F5;
+  --chart-1: #FAF8F5;
+  --chart-2: #8FA499;
+  --chart-3: #D4CFC8;
+  --chart-4: #6B8A76;
+  --chart-5: #A3B5A8;
+  --sidebar: #5A1423;
+  --sidebar-foreground: #FAF8F5;
+  --sidebar-primary: #FAF8F5;
+  --sidebar-primary-foreground: #5A1423;
+  --sidebar-accent: #8B2C42;
+  --sidebar-accent-foreground: #FAF8F5;
+  --sidebar-border: rgba(247, 245, 240, 0.1);
+  --sidebar-ring: #FAF8F5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
+
+/* Custom Premium Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(180, 140, 80, 0.35) !important; /* Elegant gold/brass color */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 140, 80, 0.7) !important;
+}
+
+/* Firefox scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 140, 80, 0.35) transparent;
+}
+
+/* Premium Form Elements Aesthetics */
+input[type="text"]:not(.rounded-full),
+input[type="tel"],
+input[type="email"],
+textarea,
+select,
+button.flex.justify-between.items-center[type="button"] {
+  border: 1px solid rgba(180, 140, 80, 0.25) !important;
+  background-color: #FAF8F5 !important; /* Slightly off-white cream for input fields in light mode */
+  color: #2C2C2A !important;
+  box-shadow: inset 0 1px 3px rgba(44, 44, 42, 0.03);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* Dark mode inputs */
+.dark input[type="text"]:not(.rounded-full),
+.dark input[type="tel"],
+.dark input[type="email"],
+.dark textarea,
+.dark select,
+.dark button.flex.justify-between.items-center[type="button"] {
+  border: 1px solid rgba(212, 175, 55, 0.22) !important;
+  background-color: #2B1518 !important; /* Rich dark burgundy for input fields in dark mode */
+  color: #F5F2EB !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus styles */
+input[type="text"]:not(.rounded-full):focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+button.flex.justify-between.items-center[type="button"]:focus {
+  border-color: #B48C50 !important;
+  box-shadow: 0 0 0 2px rgba(180, 140, 80, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+}
+
+/* Dark mode focus styles */
+.dark input[type="text"]:not(.rounded-full):focus,
+.dark input[type="tel"]:focus,
+.dark input[type="email"]:focus,
+.dark textarea:focus,
+.dark select:focus,
+.dark button.flex.justify-between.items-center[type="button"]:focus {
+  border-color: #D4AF37 !important; /* Shiny metallic gold */
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
