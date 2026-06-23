@@ -14,10 +14,10 @@ import fellini7 from "@/assets/fellini_7.jpg";
 import fellini8 from "@/assets/fellini_8.jpg";
 import fellini11 from "@/assets/fellini_11.jpg";
 import fellini13 from "@/assets/fellini_13.jpg";
-import homeBg2 from "@/assets/home_bg_2_enhanced.png"; // Ảnh tối số 2
-import homeBg4 from "@/assets/home_bg_4_enhanced.png"; // Ảnh tối số 1
-import slide1 from "../assets/hero_bg_upscaled.png";
-import slide3 from "../assets/light_slide_3.png";
+import homeBg2 from "@/assets/home_bg_2_enhanced.webp"; // Ảnh tối số 2
+import homeBg4 from "@/assets/home_bg_4_enhanced.webp"; // Ảnh tối số 1
+import slide1 from "../assets/hero_bg_upscaled.webp";
+import slide3 from "../assets/light_slide_3.webp";
 
 // // Bộ slide cho Tone Sáng (Giữ nguyên các ảnh cũ của bạn)
 const lightSlides = [slide1, slide3];
@@ -36,12 +36,12 @@ const BG_SLIDES = [
   }
 ];
 
-import event1 from "@/assets/event_1.jpg";
-import event2 from "@/assets/event_2.jpg";
-import event3 from "@/assets/event_3.jpg";
-import event4 from "@/assets/event_4.jpg";
-import event5 from "@/assets/event_5.jpg";
-import event6 from "@/assets/event_6.jpg";
+import event1 from "@/assets/event_1.webp";
+import event2 from "@/assets/event_2.webp";
+import event3 from "@/assets/event_3.webp";
+import event4 from "@/assets/event_4.webp";
+import event5 from "@/assets/event_5.webp";
+import event6 from "@/assets/event_6.webp";
 
 import gal1 from "@/assets/gallery/523760265_17858054133464787_3959112933625401191_n.jpg";
 import gal2 from "@/assets/gallery/528459324_17859694197464787_5806186954213957149_n.jpg";
@@ -60,7 +60,7 @@ import place2 from "@/assets/gallery/z7958702819131_a4bf9fad90cbb33f8e9fa2cfc7f0
 import place3 from "@/assets/gallery/z7958702825164_dcd2b47cd46fd6c5b5fdb96b01fdee51.jpg";
 import place4 from "@/assets/gallery/z7958702827762_4c3fca98aff854388c8ccb656e83278b.jpg";
 import place5 from "@/assets/gallery/z7958702828853_bba44a5bcee61349c1790ad4f95af6df.jpg";
-import place6 from "@/assets/z7958702868554_1f81285c1cf808f65e08c87b096ffafa.png";
+import place6 from "@/assets/z7958702868554_1f81285c1cf808f65e08c87b096ffafa.webp";
 import place7 from "@/assets/gallery/z7958702869295_652fd1846d07975666d52e60a31f633c.jpg";
 
 
