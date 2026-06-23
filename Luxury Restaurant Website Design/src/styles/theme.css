@@ -367,15 +367,52 @@ button.flex.justify-between.items-center[type="button"]:focus {
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
-/* ── Cursor trail particle ── */
-.gold-cursor-trail {
+/* ── Luxury Custom Cursor Ring ── */
+.luxury-cursor-ring {
   position: fixed;
+  top: 0;
+  left: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 99999;
   border-radius: 50%;
-  width: 7px;
-  height: 7px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.85) 0%, rgba(212, 175, 55, 0) 70%);
-  animation: trail-fade 0.65s ease-out forwards;
-  will-change: opacity, transform;
+  border: 1.5px solid #D4AF37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, width, height;
+  mix-blend-mode: normal;
+}
+
+.luxury-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  background: #D4AF37;
+  will-change: transform;
+}
+
+/* ── Gold Ripple on Click ── */
+@keyframes gold-ripple-out {
+  0%   { width: 0; height: 0; opacity: 0.7; border-width: 1.5px; }
+  60%  { opacity: 0.3; border-width: 1px; }
+  100% { width: 120px; height: 120px; opacity: 0; border-width: 0.5px; }
+}
+
+.gold-ripple {
+  position: fixed;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 175, 55, 0.65);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99998;
+  animation: gold-ripple-out 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Hide default cursor in dark mode ── */
+.dark-cursor-active,
+.dark-cursor-active * {
+  cursor: none !important;
 }

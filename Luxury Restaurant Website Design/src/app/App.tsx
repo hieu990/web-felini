@@ -349,6 +349,17 @@ function EventCard({ ev, delay, onBook }: { ev: typeof EVENTS[0]; delay: number;
   const [flipped, setFlipped] = useState(false);
   const [reminded, setReminded] = useState(false);
   const cd = useCountdown(ev.target);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleTiltMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    setTilt({
+      x: ((e.clientY - cy) / (rect.height / 2)) * -7,
+      y: ((e.clientX - cx) / (rect.width / 2)) * 7,
+    });
+  };
 
   return (
     <motion.div
@@ -356,6 +367,8 @@ function EventCard({ ev, delay, onBook }: { ev: typeof EVENTS[0]; delay: number;
       animate={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }}
       transition={{ delay, duration: 0.85, type: "spring", stiffness: 65, damping: 14 }}
       style={{ perspective: "900px", height: "430px" }}
+      onMouseMove={handleTiltMove}
+      onMouseLeave={() => setTilt({ x: 0, y: 0 })}
     >
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
@@ -366,6 +379,8 @@ function EventCard({ ev, delay, onBook }: { ev: typeof EVENTS[0]; delay: number;
           height: "100%",
           position: "relative",
           cursor: "pointer",
+          transform: `rotateX(${tilt.x}deg) rotateY(${flipped ? 180 : tilt.y}deg)`,
+          transition: "transform 0.15s ease",
         }}
         onClick={() => setFlipped((f) => !f)}
       >
@@ -882,12 +897,14 @@ function HeroScene({ lang, isDark, setShowBookingModal, bgSlide, setBgSlide }: H
           />
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65, duration: 1.2 }} className="pointer-events-auto">
-            <button
-              onClick={() => setShowBookingModal(true)}
-              className={`text-[9px] md:text-[10px] tracking-[0.28em] uppercase font-medium transition-colors duration-300 border-b pb-1 hover:text-[#B48C50] hover:border-[#B48C50] ${isDark ? 'text-[#F5F2EB]/85 border-[#F5F2EB]/20' : 'text-[#2C2C2A]/75 border-[#2C2C2A]/20'}`}
-            >
-              {lang === 'vi' ? 'Đặt Bàn' : 'Reserve A Table'}
-            </button>
+            <MagneticButton isDark={isDark}>
+              <button
+                onClick={() => setShowBookingModal(true)}
+                className={`text-[9px] md:text-[10px] tracking-[0.28em] uppercase font-medium transition-colors duration-300 border-b pb-1 hover:text-[#B48C50] hover:border-[#B48C50] ${isDark ? 'text-[#F5F2EB]/85 border-[#F5F2EB]/20' : 'text-[#2C2C2A]/75 border-[#2C2C2A]/20'}`}
+              >
+                {lang === 'vi' ? 'Đặt Bàn' : 'Reserve A Table'}
+              </button>
+            </MagneticButton>
           </motion.div>
         </motion.div>
       </div>
@@ -3737,7 +3754,8 @@ export default function App() {
       style={{ perspective: "1200px" }}
     >
       {/* ── GOLDEN CURSOR TRAIL (Dark Mode Only) ── */}
-      <GoldenCursorTrail isDark={isDarkMode} />
+      <LuxuryCursor isDark={isDarkMode} />
+      <GoldRipple isDark={isDarkMode} />
 
       {/* ── BACKGROUND LAYER (Bung toàn màn hình, mượt mà và không vỡ hình) ── */}
       <div className="absolute inset-0" style={{ zIndex: 0 }}>
@@ -4090,52 +4108,159 @@ export default function App() {
   );
 }
 
-// ── Golden Cursor Trail (Dark Mode Only) ──────────────────────────────────────
-function GoldenCursorTrail({ isDark }: { isDark: boolean }) {
+// ════════════════════════════════════════════════════════════
+// LUXURY CURSOR RING (Dark Mode Only)
+// ════════════════════════════════════════════════════════════
+function LuxuryCursor({ isDark }: { isDark: boolean }) {
+  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const [hoverType, setHoverType] = useState<'default' | 'button' | 'image'>('default');
+  const posRef = useRef({ x: -200, y: -200 });
+  const lerpPos = useRef({ x: -200, y: -200 });
+  const frameId = useRef<number>(0);
+
   useEffect(() => {
-    if (!isDark) return;
+    if (!isDark) {
+      document.documentElement.classList.remove('dark-cursor-active');
+      return;
+    }
+    document.documentElement.classList.add('dark-cursor-active');
 
-    let lastX = 0, lastY = 0;
-    let frameId: number;
-    let lastTime = 0;
-    const THROTTLE_MS = 35;
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-    const spawnParticle = (x: number, y: number) => {
-      const dot = document.createElement("div");
-      dot.className = "gold-cursor-trail";
-      // Randomize position slightly for organic feel
-      const offsetX = (Math.random() - 0.5) * 6;
-      const offsetY = (Math.random() - 0.5) * 6;
-      dot.style.left = `${x + offsetX}px`;
-      dot.style.top = `${y + offsetY}px`;
-      const size = 5 + Math.random() * 5;
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      document.body.appendChild(dot);
-      setTimeout(() => dot.remove(), 700);
+    const animate = () => {
+      lerpPos.current.x = lerp(lerpPos.current.x, posRef.current.x, 0.1);
+      lerpPos.current.y = lerp(lerpPos.current.y, posRef.current.y, 0.1);
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${lerpPos.current.x}px, ${lerpPos.current.y}px) translate(-50%, -50%)`;
+      }
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px) translate(-50%, -50%)`;
+      }
+      frameId.current = requestAnimationFrame(animate);
+    };
+    frameId.current = requestAnimationFrame(animate);
+
+    const onMove = (e: MouseEvent) => {
+      posRef.current = { x: e.clientX, y: e.clientY };
     };
 
-    const onMouseMove = (e: MouseEvent) => {
-      const now = Date.now();
-      if (now - lastTime < THROTTLE_MS) return;
-      lastTime = now;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 6) return;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      cancelAnimationFrame(frameId);
-      frameId = requestAnimationFrame(() => spawnParticle(e.clientX, e.clientY));
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.closest('img, [data-cursor-view]')) setHoverType('image');
+      else if (t.closest('button, a, [role="button"]')) setHoverType('button');
+      else setHoverType('default');
     };
 
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseover', onOver);
+
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      cancelAnimationFrame(frameId);
+      document.documentElement.classList.remove('dark-cursor-active');
+      window.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseover', onOver);
+      cancelAnimationFrame(frameId.current);
     };
   }, [isDark]);
 
+  if (!isDark) return null;
+
+  const ringSize = hoverType === 'image' ? 68 : hoverType === 'button' ? 12 : 28;
+  const dotSize = hoverType === 'button' ? 0 : 4;
+
+  return (
+    <>
+      <div
+        ref={ringRef}
+        className="luxury-cursor-ring"
+        style={{
+          width: ringSize,
+          height: ringSize,
+          transition: 'width 0.25s ease, height 0.25s ease, background-color 0.25s ease',
+          backgroundColor: hoverType === 'button' ? 'rgba(212,175,55,0.18)' : 'transparent',
+        }}
+      >
+        {hoverType === 'image' && (
+          <span style={{ fontSize: '7px', letterSpacing: '0.22em', color: '#D4AF37', fontWeight: 700, fontFamily: 'DM Sans', textTransform: 'uppercase' }}>
+            VIEW
+          </span>
+        )}
+      </div>
+      <div
+        ref={dotRef}
+        className="luxury-cursor-dot"
+        style={{
+          width: dotSize,
+          height: dotSize,
+          transition: 'width 0.2s ease, height 0.2s ease',
+        }}
+      />
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════
+// GOLD RIPPLE ON CLICK (Dark Mode Only)
+// ════════════════════════════════════════════════════════════
+function GoldRipple({ isDark }: { isDark: boolean }) {
+  useEffect(() => {
+    if (!isDark) return;
+    const onClick = (e: MouseEvent) => {
+      const r = document.createElement('div');
+      r.className = 'gold-ripple';
+      r.style.left = `${e.clientX}px`;
+      r.style.top = `${e.clientY}px`;
+      document.body.appendChild(r);
+      setTimeout(() => r.remove(), 800);
+    };
+    window.addEventListener('click', onClick);
+    return () => window.removeEventListener('click', onClick);
+  }, [isDark]);
   return null;
+}
+
+// ════════════════════════════════════════════════════════════
+// MAGNETIC BUTTON (Dark Mode Pull Effect)
+// ════════════════════════════════════════════════════════════
+function MagneticButton({ children, isDark }: { children: React.ReactNode; isDark: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const STRENGTH = 0.35;
+  const RADIUS = 80;
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDark || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < RADIUS) {
+      setPos({ x: dx * STRENGTH, y: dy * STRENGTH });
+    } else {
+      setPos({ x: 0, y: 0 });
+    }
+  };
+
+  const onLeave = () => setPos({ x: 0, y: 0 });
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ display: 'inline-block' }}
+    >
+      <div
+        style={{
+          transform: `translate(${pos.x}px, ${pos.y}px)`,
+          transition: pos.x === 0 && pos.y === 0 ? 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'transform 0.1s ease',
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
 }
 
