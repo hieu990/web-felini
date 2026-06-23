@@ -4180,11 +4180,6 @@ function LuxuryCursor({ isDark }: { isDark: boolean }) {
           backgroundColor: hoverType === 'button' ? 'rgba(212,175,55,0.18)' : 'transparent',
         }}
       >
-        {hoverType === 'image' && (
-          <span style={{ fontSize: '7px', letterSpacing: '0.22em', color: '#D4AF37', fontWeight: 700, fontFamily: 'DM Sans', textTransform: 'uppercase' }}>
-            VIEW
-          </span>
-        )}
       </div>
       <div
         ref={dotRef}
