@@ -371,7 +371,7 @@ function EventCard({ ev, delay, onBook }: { ev: typeof EVENTS[0]; delay: number;
       >
         {/* ── FRONT ── */}
         <div
-          className="absolute inset-0 overflow-hidden flex flex-col bg-white dark:bg-[#5B1A24] border border-[rgba(44,44,42,0.12)] dark:border-white/10 shadow-lg transition-colors duration-500 rounded-sm"
+          className="gold-card-hover absolute inset-0 overflow-hidden flex flex-col bg-white dark:bg-[#5B1A24] border border-[rgba(44,44,42,0.12)] dark:border-white/10 shadow-lg transition-colors duration-500 rounded-sm"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="relative h-44 overflow-hidden bg-[#EDE9E2] dark:bg-[#5B1A24] shrink-0">
@@ -406,7 +406,7 @@ function EventCard({ ev, delay, onBook }: { ev: typeof EVENTS[0]; delay: number;
 
         {/* ── BACK ── */}
         <div
-          className="absolute inset-0 flex flex-col p-6 bg-[#F7F5F0] dark:bg-[#4A151D] border border-[rgba(44,44,42,0.12)] dark:border-white/10 shadow-lg transition-colors duration-500 rounded-sm"
+          className="gold-card-hover absolute inset-0 flex flex-col p-6 bg-[#F7F5F0] dark:bg-[#4A151D] border border-[rgba(44,44,42,0.12)] dark:border-white/10 shadow-lg transition-colors duration-500 rounded-sm"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
           <p className="text-[9px] tracking-[0.2em] uppercase text-[#B48C50] dark:text-[#D4AF37] mb-2 transition-colors duration-500">{ev.tag}</p>
@@ -430,7 +430,7 @@ function EventCard({ ev, delay, onBook }: { ev: typeof EVENTS[0]; delay: number;
             </div>
 
             <button
-              className="w-full text-[10px] tracking-[0.15em] uppercase font-bold py-3 transition-colors duration-500 hover:opacity-85 bg-[#2C2C2A] text-white dark:bg-[#D4AF37] dark:text-[#1A1112]"
+              className="gold-btn-shimmer w-full text-[10px] tracking-[0.15em] uppercase font-bold py-3 transition-colors duration-500 hover:opacity-90 bg-[#2C2C2A] text-white dark:bg-[#D4AF37] dark:text-[#1A1112] border border-transparent"
               onClick={(e) => {
                 e.stopPropagation();
                 onBook(ev.title, ev.target);
@@ -1126,7 +1126,7 @@ function GalleryScene({
                     transition={{ duration: 0.4 }}
                     whileHover={{ scale: 1.02 }}
                     onClick={() => setLightboxIndex(idx)}
-                    className={`break-inside-avoid w-full group relative cursor-pointer overflow-hidden bg-white dark:bg-[#5B1A24] transition-colors duration-500 border border-[rgba(44,44,42,0.08)] dark:border-white/10 shadow-md hover:shadow-2xl hover:border-[#B48C50]/40 transition-all duration-300 flex flex-col rounded-sm ${aspectClass}`}
+                    className={`gold-gallery-hover break-inside-avoid w-full group relative cursor-pointer overflow-hidden bg-white dark:bg-[#5B1A24] transition-colors duration-500 border border-[rgba(44,44,42,0.08)] dark:border-white/10 shadow-md hover:shadow-2xl hover:border-[#B48C50]/40 duration-300 flex flex-col rounded-sm ${aspectClass}`}
                   >
                     <div className="relative w-full h-full overflow-hidden">
                       <GalleryImage
@@ -2612,9 +2612,9 @@ function MenuScene({
               setActiveTab(key);
               setSubTab("All");
             }}
-            className={`px-4 py-2 text-[10px] uppercase tracking-[0.16em] font-medium whitespace-nowrap border-b-2 transition-all duration-300
+            className={`gold-tab-hover px-4 py-2 text-[10px] uppercase tracking-[0.16em] font-medium whitespace-nowrap border-b-2 transition-all duration-300
               ${activeTab === key
-                ? "border-[#5B1A24] text-[#5B1A24] dark:text-[#FAF8F5] font-bold"
+                ? "gold-tab-active border-[#5B1A24] text-[#5B1A24] dark:text-[#FAF8F5] font-bold"
                 : "border-transparent text-[#7A7A72] dark:text-[#F5F2EB]/90 hover:text-[#2C2C2A] dark:text-[#F5F2EB]"}`}
           >
             {sec.title}
@@ -3736,6 +3736,9 @@ export default function App() {
       className="fixed inset-0 overflow-hidden font-['DM_Sans'] bg-[#F7F5F0] dark:bg-[#1A1112] transition-colors duration-500 text-[#2C2C2A] dark:text-[#F5F2EB] transition-colors duration-300"
       style={{ perspective: "1200px" }}
     >
+      {/* ── GOLDEN CURSOR TRAIL (Dark Mode Only) ── */}
+      <GoldenCursorTrail isDark={isDarkMode} />
+
       {/* ── BACKGROUND LAYER (Bung toàn màn hình, mượt mà và không vỡ hình) ── */}
       <div className="absolute inset-0" style={{ zIndex: 0 }}>
         <AnimatePresence mode="popLayout">
@@ -3886,7 +3889,7 @@ export default function App() {
             <button
               key={l.label}
               onClick={() => l.s !== null && setScene(l.s)}
-              className="relative text-[10px] tracking-[0.12em] uppercase font-semibold whitespace-nowrap py-1.5 cursor-pointer group transition-colors duration-300"
+              className="gold-nav-hover relative text-[10px] tracking-[0.12em] uppercase font-semibold whitespace-nowrap py-1.5 cursor-pointer group duration-300"
               style={{
                 color: l.s === scene 
                   ? (isDarkMode ? "#D4AF37" : "#2C2C2A") 
@@ -4085,5 +4088,54 @@ export default function App() {
       </AnimatePresence>
     </div>
   );
+}
+
+// ── Golden Cursor Trail (Dark Mode Only) ──────────────────────────────────────
+function GoldenCursorTrail({ isDark }: { isDark: boolean }) {
+  useEffect(() => {
+    if (!isDark) return;
+
+    let lastX = 0, lastY = 0;
+    let frameId: number;
+    let lastTime = 0;
+    const THROTTLE_MS = 35;
+
+    const spawnParticle = (x: number, y: number) => {
+      const dot = document.createElement("div");
+      dot.className = "gold-cursor-trail";
+      // Randomize position slightly for organic feel
+      const offsetX = (Math.random() - 0.5) * 6;
+      const offsetY = (Math.random() - 0.5) * 6;
+      dot.style.left = `${x + offsetX}px`;
+      dot.style.top = `${y + offsetY}px`;
+      const size = 5 + Math.random() * 5;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 700);
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastTime < THROTTLE_MS) return;
+      lastTime = now;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 6) return;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => spawnParticle(e.clientX, e.clientY));
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(frameId);
+    };
+  }, [isDark]);
+
+  return null;
 }
 
