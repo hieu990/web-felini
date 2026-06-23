@@ -367,31 +367,41 @@ button.flex.justify-between.items-center[type="button"]:focus {
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
-/* ── Luxury Custom Cursor Ring ── */
-.luxury-cursor-ring {
+/* ── Luxury Blob Cursor (Lab Coffee style) ── */
+.luxury-blob {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 99999;
   border-radius: 50%;
-  border: 1.5px solid #D4AF37;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(212, 175, 55, 0.28) 0%,
+    rgba(212, 175, 55, 0.10) 45%,
+    rgba(212, 175, 55, 0.02) 70%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 18px rgba(212, 175, 55, 0.18),
+    inset 0 0 12px rgba(212, 175, 55, 0.08);
   will-change: transform, width, height;
-  mix-blend-mode: normal;
+  mix-blend-mode: screen;
+  filter: blur(1.5px);
 }
 
-.luxury-cursor-dot {
+.luxury-blob-dot {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 100000;
   border-radius: 50%;
+  width: 5px;
+  height: 5px;
   background: #D4AF37;
   will-change: transform;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.7);
 }
 
 /* ── Gold Ripple on Click ── */

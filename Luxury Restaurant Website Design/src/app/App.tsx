@@ -4112,12 +4112,13 @@ export default function App() {
 // LUXURY CURSOR RING (Dark Mode Only)
 // ════════════════════════════════════════════════════════════
 function LuxuryCursor({ isDark }: { isDark: boolean }) {
-  const ringRef = useRef<HTMLDivElement>(null);
+  const blobRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
-  const [hoverType, setHoverType] = useState<'default' | 'button' | 'image'>('default');
-  const posRef = useRef({ x: -200, y: -200 });
-  const lerpPos = useRef({ x: -200, y: -200 });
+  const posRef = useRef({ x: -300, y: -300 });
+  const lerpPos = useRef({ x: -300, y: -300 });
   const frameId = useRef<number>(0);
+  const isHoveringBtn = useRef(false);
+  const isHoveringImg = useRef(false);
 
   useEffect(() => {
     if (!isDark) {
@@ -4129,13 +4130,18 @@ function LuxuryCursor({ isDark }: { isDark: boolean }) {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
     const animate = () => {
-      lerpPos.current.x = lerp(lerpPos.current.x, posRef.current.x, 0.1);
-      lerpPos.current.y = lerp(lerpPos.current.y, posRef.current.y, 0.1);
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${lerpPos.current.x}px, ${lerpPos.current.y}px) translate(-50%, -50%)`;
+      // Blob follows with slow lerp — the "Lab Coffee" signature lag
+      lerpPos.current.x = lerp(lerpPos.current.x, posRef.current.x, 0.072);
+      lerpPos.current.y = lerp(lerpPos.current.y, posRef.current.y, 0.072);
+
+      if (blobRef.current) {
+        blobRef.current.style.transform =
+          `translate(${lerpPos.current.x}px, ${lerpPos.current.y}px) translate(-50%, -50%)`;
       }
+      // Dot follows exactly
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px) translate(-50%, -50%)`;
+        dotRef.current.style.transform =
+          `translate(${posRef.current.x}px, ${posRef.current.y}px) translate(-50%, -50%)`;
       }
       frameId.current = requestAnimationFrame(animate);
     };
@@ -4147,9 +4153,30 @@ function LuxuryCursor({ isDark }: { isDark: boolean }) {
 
     const onOver = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
-      if (t.closest('img, [data-cursor-view]')) setHoverType('image');
-      else if (t.closest('button, a, [role="button"]')) setHoverType('button');
-      else setHoverType('default');
+      isHoveringBtn.current = !!t.closest('button, a, [role="button"]');
+      isHoveringImg.current = !!t.closest('img, [data-cursor-view]');
+
+      if (blobRef.current) {
+        if (isHoveringBtn.current) {
+          blobRef.current.style.width = '16px';
+          blobRef.current.style.height = '16px';
+          blobRef.current.style.opacity = '0.9';
+          blobRef.current.style.filter = 'blur(0px)';
+        } else if (isHoveringImg.current) {
+          blobRef.current.style.width = '90px';
+          blobRef.current.style.height = '90px';
+          blobRef.current.style.opacity = '0.85';
+          blobRef.current.style.filter = 'blur(2.5px)';
+        } else {
+          blobRef.current.style.width = '55px';
+          blobRef.current.style.height = '55px';
+          blobRef.current.style.opacity = '1';
+          blobRef.current.style.filter = 'blur(1.5px)';
+        }
+      }
+      if (dotRef.current) {
+        dotRef.current.style.opacity = isHoveringBtn.current ? '0' : '1';
+      }
     };
 
     window.addEventListener('mousemove', onMove);
@@ -4165,30 +4192,23 @@ function LuxuryCursor({ isDark }: { isDark: boolean }) {
 
   if (!isDark) return null;
 
-  const ringSize = hoverType === 'image' ? 68 : hoverType === 'button' ? 12 : 28;
-  const dotSize = hoverType === 'button' ? 0 : 4;
-
   return (
     <>
+      {/* Gold blob — follows with lag, Lab Coffee style */}
       <div
-        ref={ringRef}
-        className="luxury-cursor-ring"
+        ref={blobRef}
+        className="luxury-blob"
         style={{
-          width: ringSize,
-          height: ringSize,
-          transition: 'width 0.25s ease, height 0.25s ease, background-color 0.25s ease',
-          backgroundColor: hoverType === 'button' ? 'rgba(212,175,55,0.18)' : 'transparent',
+          width: 55,
+          height: 55,
+          transition: 'width 0.4s cubic-bezier(0.25,0.46,0.45,0.94), height 0.4s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.3s ease, filter 0.3s ease',
         }}
-      >
-      </div>
+      />
+      {/* Sharp gold dot — follows exactly */}
       <div
         ref={dotRef}
-        className="luxury-cursor-dot"
-        style={{
-          width: dotSize,
-          height: dotSize,
-          transition: 'width 0.2s ease, height 0.2s ease',
-        }}
+        className="luxury-blob-dot"
+        style={{ transition: 'opacity 0.2s ease' }}
       />
     </>
   );
