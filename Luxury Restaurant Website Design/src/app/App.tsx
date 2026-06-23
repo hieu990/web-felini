@@ -4,7 +4,7 @@ import {
   ChevronLeft, ChevronRight, Phone, Clock, Calendar,
   Users, Mail, Heart, Briefcase, Star, Wine,
   Globe, RotateCcw, ArrowRight, Search, X, Grid, FileText, Sparkles, ChefHat, Plus, Minus,
-  Upload, Trash2, AlertCircle, Paperclip, Home, Image, Sun, Moon
+  Upload, Trash2, AlertCircle, Paperclip, Home, Image
 } from "lucide-react";
 import { MENU_DATA } from "./menuData";
 
@@ -3580,23 +3580,41 @@ export default function App() {
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("fellini_theme");
-      if (stored) return stored === "dark";
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
     return true;
   });
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add("dark");
-      localStorage.setItem("fellini_theme", "dark");
+
+    const updateTheme = (isDark: boolean) => {
+      setIsDarkMode(isDark);
+      if (isDark) {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+    };
+
+    // Set initial theme
+    updateTheme(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => {
+      updateTheme(e.matches);
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handler);
+      return () => mediaQuery.removeEventListener("change", handler);
     } else {
-      root.classList.remove("dark");
-      localStorage.setItem("fellini_theme", "light");
+      mediaQuery.addListener(handler);
+      return () => mediaQuery.removeListener(handler);
     }
-  }, [isDarkMode]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("fellini_cart", JSON.stringify(cart));
@@ -3887,27 +3905,19 @@ export default function App() {
           ))}
         </div>
 
-        {/* Language & Theme switcher */}
-        <div className="shrink-0 ml-6 flex items-center gap-3">
-          <div className="flex items-center gap-2 border-r border-[#7A7A72]/30 pr-3">
-            <Globe size={11} style={{ color: "#7A7A72" }} />
-            {["EN", "VI"].map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l.toLowerCase() as "en" | "vi")}
-                className="text-[9px] tracking-widest transition-colors cursor-pointer font-bold"
-                style={{ color: lang === l.toLowerCase() ? "#2C2C2A" : "#7A7A72" }}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="text-[#7A7A72] hover:text-[#2C2C2A] dark:hover:text-[#F5F2EB] transition-colors cursor-pointer"
-          >
-            {isDarkMode ? <Sun size={12} /> : <Moon size={12} />}
-          </button>
+        {/* Language switcher */}
+        <div className="shrink-0 ml-6 flex items-center gap-2">
+          <Globe size={11} style={{ color: "#7A7A72" }} />
+          {["EN", "VI"].map((l) => (
+            <button
+              key={l}
+              onClick={() => setLang(l.toLowerCase() as "en" | "vi")}
+              className="text-[9px] tracking-widest transition-colors cursor-pointer font-bold"
+              style={{ color: lang === l.toLowerCase() ? "#2C2C2A" : "#7A7A72" }}
+            >
+              {l}
+            </button>
+          ))}
         </div>
       </nav>
 
@@ -3927,7 +3937,7 @@ export default function App() {
           <span className={`text-[9px] tracking-wider font-medium truncate flex-1 font-serif italic transition-colors duration-500 ${isDarkMode ? 'text-[#F5F2EB]/60' : 'text-[#7A7A72]'}`}>
             {lang === "vi" ? "40/24 Thảo Điền, Quận 2 • 090 123 4567" : "40/24 Thao Dien, D2 • 090 123 4567"}
           </span>
-          {/* Language & Theme switcher for mobile */}
+          {/* Language switcher for mobile */}
           <div className={`flex items-center gap-2 pl-3 shrink-0 border-l transition-colors duration-500 ${isDarkMode ? 'border-white/10' : 'border-[rgba(44,44,42,0.1)]'}`}>
             <Globe size={10} className={isDarkMode ? 'text-[#F5F2EB]/60' : 'text-[#7A7A72]'} />
             {["EN", "VI"].map((l) => (
@@ -3940,13 +3950,6 @@ export default function App() {
                 {l}
               </button>
             ))}
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="ml-1 transition-colors cursor-pointer"
-              style={{ color: isDarkMode ? "#D4AF37" : "#7A7A72" }}
-            >
-              {isDarkMode ? <Sun size={10} /> : <Moon size={10} />}
-            </button>
           </div>
         </div>
 
