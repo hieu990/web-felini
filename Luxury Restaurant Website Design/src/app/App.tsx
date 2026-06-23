@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   ChevronLeft, ChevronRight, Phone, Clock, Calendar,
@@ -3571,7 +3571,6 @@ function ReservationModal({
     </AnimatePresence>
   );
 }
-
 export default function App() {
   const [scene, setScene] = useState<Scene>(0);
   const sceneRef = useRef<Scene>(0);
@@ -3900,6 +3899,7 @@ export default function App() {
             { label: lang === "vi" ? "Không Gian" : "Mood Dining", s: 1 as Scene | null },
             { label: lang === "vi" ? "Sự Kiện" : "Events & Offers", s: 2 as Scene | null },
             { label: lang === "vi" ? "Thư Viện" : "Gallery", s: 4 as Scene | null },
+            { label: lang === "vi" ? "Liên Hệ" : "Contact", s: 5 as Scene | null },
           ].map((l) => (
             <button
               key={l.label}
