@@ -17,10 +17,10 @@ import fellini13 from "@/assets/fellini_13.jpg";
 import homeBg2 from "@/assets/home_bg_2_enhanced.webp"; // Ảnh tối số 2
 import homeBg4 from "@/assets/home_bg_4_enhanced.webp"; // Ảnh tối số 1
 import slide1 from "../assets/hero_bg_upscaled.webp";
-import slide3 from "../assets/light_slide_3.webp";
+import slide2Light from "../assets/fellini_1.jpg";
 
-// // Bộ slide cho Tone Sáng (Giữ nguyên các ảnh cũ của bạn)
-const lightSlides = [slide1, slide3];
+// // Bộ slide cho Tone Sáng
+const lightSlides = [slide1, slide2Light];
 
 // // Bộ slide mới cho Tone Tối bằng 2 file bạn yêu cầu
 const darkSlides = [homeBg4, homeBg2];
@@ -841,13 +841,13 @@ function HeroScene({ lang, isDark, setShowBookingModal, bgSlide, setBgSlide }: H
           className="absolute inset-0 pointer-events-none"
           style={{
             background: isDark
-              ? 'linear-gradient(to top, rgba(26,17,18,0.85) 0%, rgba(26,17,18,0.30) 35%, transparent 65%)'
-              : 'linear-gradient(to top, rgba(247,245,240,0.90) 0%, rgba(247,245,240,0.35) 35%, transparent 65%)',
+              ? 'linear-gradient(to top, rgba(26,17,18,0.55) 0%, rgba(26,17,18,0.18) 35%, transparent 65%)'
+              : 'linear-gradient(to top, rgba(247,245,240,0.72) 0%, rgba(247,245,240,0.25) 35%, transparent 65%)',
           }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 20%)' }}
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, transparent 20%)' }}
         />
       </div>
 
