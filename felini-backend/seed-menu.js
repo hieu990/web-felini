@@ -6,13 +6,18 @@ const path = require('path');
 const pgPath = path.join(process.cwd(), 'node_modules', 'pg');
 const { Client } = require(pgPath);
 
-const client = new Client({
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432'),
-  user: process.env.DB_USERNAME || 'postgres',
-  password: process.env.DB_PASSWORD || 'password',
-  database: process.env.DB_NAME || 'felini_db',
-});
+const client = process.env.DATABASE_URL
+  ? new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    })
+  : new Client({
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '5432'),
+      user: process.env.DB_USERNAME || 'postgres',
+      password: process.env.DB_PASSWORD || 'password',
+      database: process.env.DB_NAME || 'felini_db',
+    });
 
 // ============================================================
 // FULL MENU DATA - lấy từ menuData.ts của website chính
