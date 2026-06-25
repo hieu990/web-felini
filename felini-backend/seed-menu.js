@@ -330,12 +330,12 @@ const menuItems = [
   },
 
   // ── DRINKS — Soft Drinks ──────────────────────────────────
-  { nameEn: 'Acqua Panna', nameVi: 'Nước khoáng Acqua Panna', price: 90, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Premium still mineral water from Italy.', descriptionVi: 'Nước khoáng không ga cao cấp từ Ý.', imageUrl: 'http://localhost:3000/uploads/acqua_panna.png' },
-  { nameEn: 'San Pellegrino', nameVi: 'Nước khoáng sủi bọt San Pellegrino', price: 90, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Premium sparkling mineral water from Italy.', descriptionVi: 'Nước khoáng sủi bọt cao cấp từ Ý.', imageUrl: 'http://localhost:3000/uploads/san_pellegrino.png' },
-  { nameEn: 'Cola', nameVi: 'Coca Cola', price: 55, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Classic Coca-Cola.', descriptionVi: 'Nước ngọt Coca Cola cổ điển.', imageUrl: 'http://localhost:3000/uploads/cola.png' },
-  { nameEn: 'Sprite', nameVi: 'Nước ngọt Sprite', price: 55, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Crisp and refreshing lemon-lime soda.', descriptionVi: 'Nước ngọt soda chanh mát lạnh.', imageUrl: 'http://localhost:3000/uploads/sprite.png' },
-  { nameEn: 'San Pellegrino Limonata', nameVi: 'San Pellegrino Vị Chanh', price: 75, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Sparkling lemon beverage from San Pellegrino.', descriptionVi: 'Nước sủi bọt hương chanh từ San Pellegrino.', imageUrl: 'http://localhost:3000/uploads/san_pellegrino_limonata.png' },
-  { nameEn: 'Ginger Ale', nameVi: 'Nước gừng Ginger Ale', price: 55, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Refreshing ginger-flavored sparkling beverage.', descriptionVi: 'Nước sủi bọt hương gừng tươi mát.', imageUrl: 'http://localhost:3000/uploads/ginger_ale.png' },
+  { nameEn: 'Acqua Panna', nameVi: 'Nước khoáng Acqua Panna', price: 90, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Premium still mineral water from Italy.', descriptionVi: 'Nước khoáng không ga cao cấp từ Ý.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412322/felini/menu/acqua_panna.jpg' },
+  { nameEn: 'San Pellegrino', nameVi: 'Nước khoáng sủi bọt San Pellegrino', price: 90, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Premium sparkling mineral water from Italy.', descriptionVi: 'Nước khoáng sủi bọt cao cấp từ Ý.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412324/felini/menu/san_pellegrino.jpg' },
+  { nameEn: 'Cola', nameVi: 'Coca Cola', price: 55, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Classic Coca-Cola.', descriptionVi: 'Nước ngọt Coca Cola cổ điển.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412326/felini/menu/cola.jpg' },
+  { nameEn: 'Sprite', nameVi: 'Nước ngọt Sprite', price: 55, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Crisp and refreshing lemon-lime soda.', descriptionVi: 'Nước ngọt soda chanh mát lạnh.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412328/felini/menu/sprite.jpg' },
+  { nameEn: 'San Pellegrino Limonata', nameVi: 'San Pellegrino Vị Chanh', price: 75, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Sparkling lemon beverage from San Pellegrino.', descriptionVi: 'Nước sủi bọt hương chanh từ San Pellegrino.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412331/felini/menu/san_pellegrino_limonata.jpg' },
+  { nameEn: 'Ginger Ale', nameVi: 'Nước gừng Ginger Ale', price: 55, category: 'DRINKS', subCategory: 'Soft Drinks', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Refreshing ginger-flavored sparkling beverage.', descriptionVi: 'Nước sủi bọt hương gừng tươi mát.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412333/felini/menu/ginger_ale.jpg' },
 
   // ── DRINKS — Juices ───────────────────────────────────────
   { nameEn: 'Orange Juice', nameVi: 'Nước ép cam', price: 64, category: 'DRINKS', subCategory: 'Juices', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Freshly pressed orange juice.', descriptionVi: 'Nước cam ép tươi nguyên chất.', imageUrl: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=500&q=80' },
@@ -343,10 +343,10 @@ const menuItems = [
   { nameEn: 'Coconut Water', nameVi: 'Nước dừa tươi', price: 65, category: 'DRINKS', subCategory: 'Juices', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Natural fresh coconut water.', descriptionVi: 'Nước dừa tươi tự nhiên.', imageUrl: 'https://images.unsplash.com/photo-1525385133336-247b6c258501?auto=format&fit=crop&w=500&q=80' },
 
   // ── DRINKS — Beer & Mocktails ─────────────────────────────
-  { nameEn: 'Corona', nameVi: 'Bia Corona', price: 75, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Mexican lager beer.', descriptionVi: 'Bia lager Mexico nhẹ nhàng, mát lạnh.', imageUrl: 'http://localhost:3000/uploads/corona.png' },
-  { nameEn: 'Heineken', nameVi: 'Bia Heineken', price: 70, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Classic Dutch pilsner.', descriptionVi: 'Bia pilsner Hà Lan cổ điển.', imageUrl: 'http://localhost:3000/uploads/heineken.png' },
-  { nameEn: 'Virgin Mojito', nameVi: 'Virgin Mojito', price: 120, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Fresh mint, lime juice, sugar syrup, and sparkling water.', descriptionVi: 'Bạc hà tươi, nước cốt chanh, siro đường và soda.', imageUrl: 'http://localhost:3000/uploads/virgin_mojito.png' },
-  { nameEn: 'Sunrise Mocktail', nameVi: 'Sunrise Mocktail', price: 120, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Orange juice, grenadine, and sparkling water layered like a sunrise.', descriptionVi: 'Nước cam, siro lựu đỏ và soda xếp lớp như bình minh.', imageUrl: 'http://localhost:3000/uploads/sunrise_mocktail.png' },
+  { nameEn: 'Corona', nameVi: 'Bia Corona', price: 75, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Mexican lager beer.', descriptionVi: 'Bia lager Mexico nhẹ nhàng, mát lạnh.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412335/felini/menu/corona.jpg' },
+  { nameEn: 'Heineken', nameVi: 'Bia Heineken', price: 70, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Classic Dutch pilsner.', descriptionVi: 'Bia pilsner Hà Lan cổ điển.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412337/felini/menu/heineken.jpg' },
+  { nameEn: 'Virgin Mojito', nameVi: 'Virgin Mojito', price: 120, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Fresh mint, lime juice, sugar syrup, and sparkling water.', descriptionVi: 'Bạc hà tươi, nước cốt chanh, siro đường và soda.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412339/felini/menu/virgin_mojito.jpg' },
+  { nameEn: 'Sunrise Mocktail', nameVi: 'Sunrise Mocktail', price: 120, category: 'DRINKS', subCategory: 'Beer & Mocktails', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Orange juice, grenadine, and sparkling water layered like a sunrise.', descriptionVi: 'Nước cam, siro lựu đỏ và soda xếp lớp như bình minh.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412341/felini/menu/sunrise_mocktail.jpg' },
 
   // ── DRINKS — Cocktails & Spirits ──────────────────────────
   {
@@ -354,44 +354,44 @@ const menuItems = [
     tags: JSON.stringify([]),
     descriptionEn: 'Aperol liqueur, crisp Prosecco seltzer, fresh orange slice, and a splash of sparkling water.',
     descriptionVi: 'Rượu mùi Aperol, Prosecco sủi tăm, cam tươi lát và nước soda thanh mát.',
-    imageUrl: 'http://localhost:3000/uploads/aperol_spritz.png'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412344/felini/menu/aperol_spritz.jpg'
   },
   {
     nameEn: 'Negroni', nameVi: 'Negroni Cổ Điển', price: 155, category: 'DRINKS', subCategory: 'Cocktails & Spirits', isAvailable: true,
     tags: JSON.stringify([]),
     descriptionEn: 'Campari, sweet vermouth, and gin stirred to perfection.',
     descriptionVi: 'Campari, vermouth ngọt và gin khuấy hoàn hảo.',
-    imageUrl: 'http://localhost:3000/uploads/negroni.png'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412345/felini/menu/negroni.jpg'
   },
   {
     nameEn: 'Espresso Martini', nameVi: 'Espresso Martini', price: 155, category: 'DRINKS', subCategory: 'Cocktails & Spirits', isAvailable: true,
     tags: JSON.stringify([]),
     descriptionEn: 'Vodka, espresso, coffee liqueur, and simple syrup shaken to a frothy perfection.',
     descriptionVi: 'Vodka, espresso, rượu cà phê và siro đường lắc bọt mịn hoàn hảo.',
-    imageUrl: 'http://localhost:3000/uploads/espresso_martini.png'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412347/felini/menu/espresso_martini.jpg'
   },
   {
     nameEn: 'Hugo Spritz', nameVi: 'Hugo Spritz', price: 160, category: 'DRINKS', subCategory: 'Cocktails & Spirits', isAvailable: true,
     tags: JSON.stringify([]),
     descriptionEn: 'Prosecco, elderflower liqueur, fresh mint, and a squeeze of lime.',
     descriptionVi: 'Prosecco, rượu hoa cơm cháy, bạc hà tươi và chanh vắt.',
-    imageUrl: 'http://localhost:3000/uploads/hugo_spritz.png'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412350/felini/menu/hugo_spritz.jpg'
   },
   {
     nameEn: 'Mojito', nameVi: 'Mojito', price: 155, category: 'DRINKS', subCategory: 'Cocktails & Spirits', isAvailable: true,
     tags: JSON.stringify([]),
     descriptionEn: 'White rum, fresh mint, lime juice, sugar, and soda water.',
     descriptionVi: 'Rum trắng, bạc hà tươi, nước cốt chanh, đường và soda.',
-    imageUrl: 'http://localhost:3000/uploads/mojito.png'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412352/felini/menu/mojito.jpg'
   },
 
   // ── DRINKS — Coffee & Tea ─────────────────────────────────
-  { nameEn: 'Espresso', nameVi: 'Cà phê Espresso', price: 55, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Short, intense Italian espresso.', descriptionVi: 'Cà phê espresso đậm đà kiểu Ý.', imageUrl: 'http://localhost:3000/uploads/espresso.png' },
+  { nameEn: 'Espresso', nameVi: 'Cà phê Espresso', price: 55, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Short, intense Italian espresso.', descriptionVi: 'Cà phê espresso đậm đà kiểu Ý.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412354/felini/menu/espresso.jpg' },
   { nameEn: 'Cappuccino', nameVi: 'Cà phê Cappuccino', price: 75, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Espresso with steamed milk and thick froth.', descriptionVi: 'Espresso với sữa hấp và bọt sữa dày.', imageUrl: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80' },
   { nameEn: 'Latte', nameVi: 'Cà phê Latte', price: 75, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Espresso with steamed milk and light froth.', descriptionVi: 'Espresso với nhiều sữa hấp và bọt sữa nhẹ.', imageUrl: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80' },
   { nameEn: 'Americano', nameVi: 'Cà phê Americano', price: 60, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Espresso diluted with hot water.', descriptionVi: 'Espresso pha loãng với nước nóng.', imageUrl: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80' },
-  { nameEn: 'Vietnamese Coffee', nameVi: 'Cà phê Đen / Nâu Đá Việt Nam', price: 65, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Traditional Vietnamese iced coffee, black or with condensed milk.', descriptionVi: 'Cà phê phin Việt Nam đá, đen hoặc nâu.', imageUrl: 'http://localhost:3000/uploads/vietnamese_coffee.png' },
-  { nameEn: 'Peppermint Tea', nameVi: 'Trà Bạc Hà', price: 49, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Refreshing peppermint herbal tea.', descriptionVi: 'Trà thảo mộc bạc hà thanh mát.', imageUrl: 'http://localhost:3000/uploads/peppermint_tea.png' },
+  { nameEn: 'Vietnamese Coffee', nameVi: 'Cà phê Đen / Nâu Đá Việt Nam', price: 65, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Traditional Vietnamese iced coffee, black or with condensed milk.', descriptionVi: 'Cà phê phin Việt Nam đá, đen hoặc nâu.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412357/felini/menu/vietnamese_coffee.jpg' },
+  { nameEn: 'Peppermint Tea', nameVi: 'Trà Bạc Hà', price: 49, category: 'DRINKS', subCategory: 'Coffee & Tea', isAvailable: true, tags: JSON.stringify([]), descriptionEn: 'Refreshing peppermint herbal tea.', descriptionVi: 'Trà thảo mộc bạc hà thanh mát.', imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412359/felini/menu/peppermint_tea.jpg' },
 
   // ── WINES ─────────────────────────────────────────────────
   {
@@ -401,7 +401,7 @@ const menuItems = [
     descriptionVi: 'Dòng vang trắng khô thanh khiết mang hương hoa trắng, táo xanh và cam chanh tươi mát. Vị chua hài hòa, khoáng chất phong phú và hậu vị sồi nhẹ cuốn hút.',
     price: 160, category: 'WINES', subCategory: 'White Wine', isAvailable: true,
     tags: JSON.stringify(['white-wine']),
-    imageUrl: 'http://localhost:3000/uploads/tokaj_furmint.jpg'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412361/felini/menu/tokaj_furmint.jpg'
   },
   {
     nameEn: 'Luis Cañas - Bodegas Luis Cañas',
@@ -410,7 +410,7 @@ const menuItems = [
     descriptionVi: 'Hương hoa violet nhẹ nhàng hòa quyện tinh tế cùng quả mọng rừng, mâm xôi chín và dâu tằm. Cấu trúc mượt mà, vị axit cân bằng cùng tannin mềm mại.',
     price: 145, category: 'WINES', subCategory: 'Red Wine', isAvailable: true,
     tags: JSON.stringify(['red-wine']),
-    imageUrl: 'http://localhost:3000/uploads/luis_canas.jpg'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412363/felini/menu/luis_canas.jpg'
   },
   {
     nameEn: 'Bodegas Artero - Artero',
@@ -419,7 +419,7 @@ const menuItems = [
     descriptionVi: 'Màu đỏ anh đào tươi sáng với hương quả việt quất, mâm xôi chín và thảo mộc ngọt ngào. Tròn đầy và êm dịu trên vòm miệng.',
     price: 150, category: 'WINES', subCategory: 'Red Wine', isAvailable: true,
     tags: JSON.stringify(['red-wine']),
-    imageUrl: 'http://localhost:3000/uploads/artero.webp'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412364/felini/menu/artero.jpg'
   },
   {
     nameEn: 'Primadonna Chardonnay Puglia - Varvaglione',
@@ -428,7 +428,7 @@ const menuItems = [
     descriptionVi: 'Mở đầu với hương dứa nhiệt đới chín mọng. Thể chất đậm đà, cân bằng và vô cùng thanh lịch trên vòm miệng cùng hậu vị axit mát lạnh thanh nhã.',
     price: 160, category: 'WINES', subCategory: 'White Wine', isAvailable: true,
     tags: JSON.stringify(['white-wine']),
-    imageUrl: 'http://localhost:3000/uploads/primadonna_chardonnay.jpg'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412365/felini/menu/primadonna_chardonnay.jpg'
   },
   {
     nameEn: 'V3 Negroamaro Del Salento - Varvaglione',
@@ -437,7 +437,7 @@ const menuItems = [
     descriptionVi: 'Hương mâm xôi đen hoang dã, mận chín ngọt ngào xen lẫn hương vani ấm áp và gia vị nhẹ nhàng cùng thảo mộc Địa Trung Hải. Mềm mại, mịn mượt và thơm nồng.',
     price: 700, category: 'WINES', subCategory: 'Red Wine', isAvailable: true,
     tags: JSON.stringify(['red-wine', 'vip-favorite']),
-    imageUrl: 'http://localhost:3000/uploads/v3_negroamaro.jpg'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412366/felini/menu/v3_negroamaro.jpg'
   },
   {
     nameEn: 'Papale Primitivo Di Manduria - Varvaglione',
@@ -446,7 +446,7 @@ const menuItems = [
     descriptionVi: 'Hương thơm mãnh liệt của việt quất chín mọng và mứt quả dại thơm nồng. Hương hoa quý phái hòa quyện cùng trái cây đỏ mang lại hậu vị tròn trịa, êm ái vô cùng sang trọng.',
     price: 1045, category: 'WINES', subCategory: 'Red Wine', isAvailable: true,
     tags: JSON.stringify(['red-wine', 'premium']),
-    imageUrl: 'http://localhost:3000/uploads/papale_primitivo.jpg'
+    imageUrl: 'https://res.cloudinary.com/ddocxipvw/image/upload/v1782412367/felini/menu/papale_primitivo.jpg'
   }
 ];
 
