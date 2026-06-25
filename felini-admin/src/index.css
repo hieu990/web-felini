@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-wine-dark: #2d0a0a;
+  --color-wine-main: #4a0e0e;
+  --color-gold-accent: #d4af37;
+}
+
+@layer base {
+  body {
+    @apply bg-wine-dark text-stone-100 font-sans antialiased;
+  }
+}
